@@ -77,9 +77,9 @@ public class AmazonDataDriven {
 			String str;
 			System.out.println("INSIDE FOR");
 			
-			if(isElementPresent(By.xpath("//*[@id='result_"+i+"']/div/div[5]/div/a/span[2]")))
+			if(i==0)
 			{
-				//System.out.println("INSIDE IF");
+				System.out.println("INSIDE IF");
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -90,9 +90,9 @@ public class AmazonDataDriven {
 				System.out.println(str);
 				
 			}
-		if(isElementPresent(By.xpath("//*[@id='result_"+i+"']/div/div[5]/div/a/span[1]")))
+		if(i==1 || i==2)
 			{
-				//System.out.println("INSIDE ELSE IF");
+				System.out.println("INSIDE ELSE IF");
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -104,9 +104,9 @@ public class AmazonDataDriven {
 				
 				//*[@id="result_2"]/div/div[5]/div/a/span[1]
 			}
-		else
+		if(i==3)
 			{
-				//System.out.println("INSIDE ELSE");
+				System.out.println("INSIDE ELSE");
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -115,23 +115,13 @@ public class AmazonDataDriven {
 				}
 				str = driver.findElement(By.xpath("//*[@id='result_"+i+"']/div/div[5]/div[1]/a/span[2]")).getText();
 				System.out.println(str);
-				
-				
 			}
 			
 /*			str = driver.findElement(By.xpath("//*[@id='result_"+i+"']/div/div[5]/div/a/span")).getText();
 			System.out.println(str);*/
-			
-					
 		}
-		
-		
-		
-		
+
 	}
-	
-	
-	
 	
 	@AfterClass
 	public void tearDown() {
