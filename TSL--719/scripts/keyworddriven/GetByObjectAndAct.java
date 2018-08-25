@@ -1,5 +1,6 @@
 package scripts.keyworddriven;
 
+import java.util.Hashtable;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
@@ -9,9 +10,11 @@ public class GetByObjectAndAct {
 
 	WebDriver driver;
 	OpenBrowser browserobj;
+	Hashtable<String, String> ht;
 
 	public GetByObjectAndAct(WebDriver driver) {
 		this.driver = driver;
+		ht = new Hashtable<>();
 	}
 
 	public void performAction(String operation, String objectName,
@@ -52,18 +55,26 @@ public class GetByObjectAndAct {
 			
 			break;
 			
+		case "STORE":
+			System.out.println("Entered store variable");
+			ht.put( value,objectName);
+			break;
+			
+		case "ECHO":
+			System.out.println("Entered Get Variable");
+
+			System.out.println("-----------------------------------------------------");
+			System.out.println("Variable name :- "+value+" Value:- "+ht.get(value));
+			System.out.println("-----------------------------------------------------");
+
+			break;
+			
 		default:
 			break;
 		}
 	}
 
-	/**
-	 * Find element BY using object type and value * @param objectName
-	 * 
-	 * @param objectType
-	 * @return
-	 * @throws Exception
-	 */
+
 	private By getByObject(String objectName, String objectType)
 			throws Exception {
 		// Find by xpath
