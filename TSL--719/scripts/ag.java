@@ -25,7 +25,7 @@ public class ag {
 			System.out.println(driver.findElement(By.xpath("/html/body/footer/div/a["+i+"]")).getAttribute("href"));
 				
 		}		
-		
+		 
 		
 	}
 

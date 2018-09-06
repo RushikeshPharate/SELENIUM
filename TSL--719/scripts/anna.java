@@ -22,6 +22,7 @@ public class anna {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 
+		
 		File pathToBinary = new File("C:\\Users\\AM101_PC15\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
 		FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary);
 		FirefoxProfile firefoxProfile = new FirefoxProfile();

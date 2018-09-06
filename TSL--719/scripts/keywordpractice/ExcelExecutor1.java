@@ -17,6 +17,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
+import scripts.keyworddriven.GetByObjectAndAct;
+import scripts.keyworddriven.ReadExcelFileSheet;
+
 /**
  * this is the excel executor goes row by row of excel reads the keywords in
  * excel sheet executes one by one
@@ -24,7 +27,7 @@ import org.testng.annotations.Test;
  */
 public class ExcelExecutor1 {
 
-	WebDriver driver;
+//	WebDriver driver;
 	Sheet excelSheet;
 
 	@BeforeTest
@@ -32,21 +35,16 @@ public class ExcelExecutor1 {
 		java.util.Date date = new java.util.Date();
 		System.out.println("\n\nExecution Log - Start Time - "
 				+ new Timestamp(date.getTime()));
-		System.out.println("Launching google chrome with new profile..");
-		System.setProperty("webdriver.chrome.driver",
-				"test\\resources\\drivers\\" + "chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
+		
 	}
 
 	@Test
-	public void testLogin() throws Exception {
+	public void getvariable() throws Exception {
 
-		GetByObjectAndAct1 getAndAct = new GetByObjectAndAct1(driver);
+		GetByObjectAndAct1 getAndAct = new GetByObjectAndAct1();
 		// Read keyword sheet
-		excelSheet = ReadExcelFileSheet1
-				.getExcelSheet("test\\resources\\data\\", "KeywordAnna.xlsx",
-						"KeywordAnna");
+		excelSheet = ReadExcelFileSheet.getExcelSheet(
+				"test\\resources\\data\\", "Amp.xlsx", "Amp");
 		// Find number of rows in excel file
 		int rowCount = excelSheet.getLastRowNum() - excelSheet.getFirstRowNum();
 		// Create a loop over all the rows of excel file to read it
@@ -59,15 +57,17 @@ public class ExcelExecutor1 {
 				// Print testcase detail on console
 				System.out.println(row.getCell(1).toString() + "----"
 						+ row.getCell(2).toString() + "----"
-						+ row.getCell(3).toString() + "----"
-						+ row.getCell(4).toString());
-
+						+ row.getCell(3).toString() + "----");
 				// Call perform function to perform operation on UI
 				try {
 
 					getAndAct.performAction(row.getCell(1).toString(), row
-							.getCell(2).toString(), row.getCell(3).toString(),
-							row.getCell(4).toString());
+							.getCell(2).toString(), row.getCell(3).toString());
+					
+					/*System.out.println(row.getCell(1).toString());
+					System.out.println(row.getCell(2).toString());
+					System.out.println(row.getCell(3).toString());*/
+					
 
 				} catch (Exception e) {
 					System.out.println("fail =" + e.getMessage());
@@ -75,16 +75,15 @@ public class ExcelExecutor1 {
 			}// end if
 			else {
 				// Print the new testcase name when it started
-				System.out.println("New Testcase->" + row.getCell(0).toString()
-						+ " Started");
+				/*System.out.println("New Testcase->" + row.getCell(0).toString()
+						+ " Started");*/
 			}// end else
 		}// end for
+		
 	}
-
 	@AfterClass
 	public void tearDown() {
 
-		driver.quit();
 		java.util.Date date = new java.util.Date();
 		System.out.println("\n\nExecution Log - End Time - "
 				+ new Timestamp(date.getTime()));
